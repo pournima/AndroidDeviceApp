@@ -1,0 +1,51 @@
+package com.webo.device_android;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+public class DisplayDeviceActivity extends Activity {
+
+	public final static int REQUEST_CODE = 123;
+	public Boolean mFromQrCode;
+	public String mQrCodeResult;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+	}
+
+
+
+	@Override
+	public void onActivityResult(final int requestCode, final int resultCode,
+			final Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == REQUEST_CODE) {
+			if (data != null) {
+				String scanResult = data.getStringExtra("SCAN_RESULT");
+				if (scanResult != null) {
+					mFromQrCode = true;
+					mQrCodeResult = scanResult;
+					// Toast toast = Toast.makeText(this,scanResult, 100000);
+					// toast.show();
+				} else {
+					mFromQrCode = false;
+					// Toast toast = Toast.makeText(this, "Scanning Faild",
+					// 100000);
+					// toast.show();
+				}
+			}
+		} else {
+			mFromQrCode = false;
+			// Toast toast = Toast.makeText(this, "Scanning Faild", 100000);
+			// toast.show();
+		}
+
+	}
+}
+
+
+

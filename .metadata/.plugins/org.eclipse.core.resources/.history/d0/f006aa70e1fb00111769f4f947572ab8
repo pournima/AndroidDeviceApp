@@ -1,0 +1,6 @@
+package com.webo.deviceandroid.webservice;
+
+public interface WebServiceIface {
+     public static final String BASE_URL = "http://mobiapi.herokuapp.com/api";
+	
+}

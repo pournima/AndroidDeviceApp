@@ -1,0 +1,12 @@
+package com.webo.deviceandroid.webservice;
+
+import java.util.List;
+
+import com.webo.deviceandroid.task.DeviceResult;
+
+public class DeviceWebService implements WebServiceIface {
+
+	public static List<DeviceResult> setDeviceData(){
+		
+	}
+}

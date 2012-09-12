@@ -1,0 +1,6 @@
+package com.webo.device_android;
+
+public class DisplayDeviceActivity {
+
+	public final static int REQUEST_CODE = 123;
+}

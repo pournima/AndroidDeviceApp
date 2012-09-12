@@ -1,0 +1,5 @@
+package com.webo.device_android.task;
+
+public class DeviceTask extends AsyncTask<Double, Integer, List<DeviceResult> {
+
+}

@@ -1,0 +1,42 @@
+package com.webo.deviceandroid.webservice;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import android.content.Context;
+
+import com.webo.deviceandroid.task.DeviceResult;
+
+public class DeviceWebService implements WebServiceIface {
+
+	List<DeviceResult> result = null;
+	public static List<DeviceResult> setDeviceData(Context context,Double[] device_params){
+		
+		WebService webService = new WebService(BASE_URL);
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>(6);
+        params.add(new BasicNameValuePair("qr_code", Double.toString(device_params[0])));
+        params.add(new BasicNameValuePair("device_id", Double.toString(device_params[1])));
+        params.add(new BasicNameValuePair("device_name", Double.toString(device_params[2])));
+        String response = webService.webPost("", params);
+        if(response != null)
+            Log.e("CHECKINFORGOOD", "Business Result for lat " + location_params[0] + " lon " + location_params[1] + ": " + response.toString());
+
+        try {
+            java.lang.reflect.Type typeOfListOfBusiness = (new TypeToken<List<BusinessResult>>() {
+            }).getType();
+
+            res = new Gson().fromJson(response,
+                    (java.lang.reflect.Type) typeOfListOfBusiness);
+
+            Log.e("CHECKINFORGOOD", result.toString());
+        } catch (Exception e) {
+            Log.e("CHECKINFORGOOD", "BusinessResult Error: " + e.getMessage());
+        }
+
+        return result;
+	}
+}

@@ -1,0 +1,48 @@
+package com.webo.deviceandroid.task;
+
+import java.util.List;
+
+import org.json.JSONObject;
+import com.webo.deviceandroid.MainActivity;
+import com.webo.deviceandroid.webservice.DeviceWebService;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class DeviceTask extends AsyncTask<String, Integer,String> {
+
+	MainActivity context;
+	
+	public DeviceTask(MainActivity context){
+		this.context=context;
+	}
+	
+	@Override
+	protected String doInBackground(String... device_params) {
+		// TODO Auto-generated method stub
+		return DeviceWebService.setDeviceData(context, device_params);
+		
+	}
+
+	protected void onPostExecute(String result) {
+		
+		Log.v("Update", "Post user updates");
+		
+		try{
+			
+			JSONObject mJsonObject = new JSONObject(result);
+			String strSuccess = mJsonObject.getString("success");
+			if(strSuccess=="true"){
+				context.setResponse(true);
+			}else{
+				context.setResponse(false);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
+	
+	
+}

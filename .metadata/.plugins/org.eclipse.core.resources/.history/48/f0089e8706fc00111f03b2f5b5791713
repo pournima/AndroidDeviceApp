@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">device_android</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main">Webonise Device</string>
+
+</resources>

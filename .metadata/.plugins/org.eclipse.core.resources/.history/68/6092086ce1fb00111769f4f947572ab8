@@ -1,0 +1,8 @@
+package com.checkinlibrary.ws.services;
+
+import com.checkinlibrary.Config;
+
+public interface WebServiceIface {
+     public static final String BASE_URL = Config.WEB_SERVICE_BASE;
+	// public static final String BASE_URL = "http://stage.checkinforgood.com";
+}

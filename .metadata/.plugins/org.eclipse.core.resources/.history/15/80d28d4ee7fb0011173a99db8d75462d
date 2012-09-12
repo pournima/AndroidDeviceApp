@@ -1,0 +1,71 @@
+package com.webo.deviceandroid;
+
+import com.webo.deviceandroid.task.DeviceTask;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+
+public class DisplayDeviceActivity extends Activity {
+
+	public Boolean mFromQrCode;
+	public String mQrCodeResult;
+	//AppStatus appStatus;
+	String qr_code;
+	String device_id;
+	public static String device_name = "android";
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+	}
+
+	
+	public void setDeviceData() {
+		if(this.appStatus.isOnline()) {
+			this.showDialog(0);			
+			new DeviceTask(this).execute(qr_code,device_id,device_name);
+			
+		} else {
+			//Intent intent= new Intent(this,NoConnectivityScreen.class);
+			//this.startActivity(intent);
+			
+			Log.v("DisplayDeviceActivity", "App is not online!");
+			finish();
+		}
+	}
+
+
+	@Override
+	public void onActivityResult(final int requestCode, final int resultCode,
+			final Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == REQUEST_CODE) {
+			if (data != null) {
+				String scanResult = data.getStringExtra("SCAN_RESULT");
+				if (scanResult != null) {
+					mFromQrCode = true;
+					mQrCodeResult = scanResult;
+					// Toast toast = Toast.makeText(this,scanResult, 100000);
+					// toast.show();
+				} else {
+					mFromQrCode = false;
+					// Toast toast = Toast.makeText(this, "Scanning Faild",
+					// 100000);
+					// toast.show();
+				}
+			}
+		} else {
+			mFromQrCode = false;
+			// Toast toast = Toast.makeText(this, "Scanning Faild", 100000);
+			// toast.show();
+		}
+
+	}
+}
+
+
+

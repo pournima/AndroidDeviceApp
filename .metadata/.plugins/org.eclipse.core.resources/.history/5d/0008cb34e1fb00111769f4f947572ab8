@@ -1,0 +1,16 @@
+package com.webo.device_android.task;
+
+import java.util.List;
+
+import android.os.AsyncTask;
+
+public class DeviceTask extends AsyncTask<Double, Integer, List<DeviceResult>> {
+
+	@Override
+	protected List<DeviceResult> doInBackground(Double... arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+}

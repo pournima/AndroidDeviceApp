@@ -1,0 +1,31 @@
+package com.webo.deviceandroid.task;
+
+import java.util.List;
+
+import com.webo.deviceandroid.DisplayDeviceActivity;
+import com.webo.deviceandroid.webservice.DeviceWebService;
+
+import android.os.AsyncTask;
+import android.util.Log;
+
+public class DeviceTask extends AsyncTask<Double, Integer, List<DeviceResult>> {
+
+	DisplayDeviceActivity context;
+	
+	public DeviceTask(DisplayDeviceActivity context){
+		this.context=context;
+	}
+	
+	@Override
+	protected List<DeviceResult> doInBackground(Double... device_params) {
+		// TODO Auto-generated method stub
+		return DeviceWebService.setDeviceData(context, device_params);
+	}
+
+	protected void onPostExecute(List<DeviceResult> result) {
+		
+		Log.v("", "Post user updates");
+	}
+	
+	
+}

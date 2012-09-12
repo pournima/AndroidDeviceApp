@@ -1,0 +1,27 @@
+package com.webo.deviceandroid.webservice;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import android.content.Context;
+
+import com.webo.deviceandroid.task.DeviceResult;
+
+public class DeviceWebService implements WebServiceIface {
+
+	List<DeviceResult> result = null;
+	public static List<DeviceResult> setDeviceData(Context context,Double[] device_params){
+		
+		WebService webService = new WebService(BASE_URL);
+
+        List<NameValuePair> params = new ArrayList<NameValuePair>(6);
+        params.add(new BasicNameValuePair("qr_code", Double.toString(device_params[0])));
+        params.add(new BasicNameValuePair("longitude", Double.toString(device_params[1])));
+        params.add(new BasicNameValuePair("longitude", Double.toString(device_params[2])));
+		return null;
+		
+	}
+}
